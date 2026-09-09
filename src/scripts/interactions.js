@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 0.2)
         .add(() => {
             const letterTextEl = document.getElementById('letter-peek-text');
-            startTypingEffect(letterTextEl, 'For Keonho', 85);
+            startTypingEffect(letterTextEl, 'For Chiquita', 85);
         }, 0.4)
         // 4. Letter slides up and pops forward
         .to(letter, {

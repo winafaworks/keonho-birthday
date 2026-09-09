@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Happy Birthday Keonho!</title>
-    
+    <title>Happy Birthday Chiquita!</title>
+
     <!-- Favicon / Title Logo (Buket Bunga) -->
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/flower_cursor_64.png">
     <link rel="icon" type="image/png" sizes="128x128" href="./assets/images/flower_cursor_128.png">
     <link rel="shortcut icon" href="./favicon.ico">
     <link rel="apple-touch-icon" href="./assets/images/flower_cursor_128.png">
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Fredoka:wght@500;700&family=Indie+Flower&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Fredoka:wght@500;700&family=Indie+Flower&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- CSS Files -->
     <link rel="stylesheet" href="./src/styles/tokens.css">
     <link rel="stylesheet" href="./src/styles/animations.css">
     <link rel="stylesheet" href="./src/styles/components.css">
-    
+
     <!-- Canvas Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
+
 <body>
     <!-- Audio Elements -->
     <audio id="bgMusic" loop preload="auto">
@@ -45,7 +49,7 @@
                 <div class="envelope-glow"></div>
                 <div class="envelope-wrapper" id="envelope3d">
                     <div class="env-back"></div>
-                    <div class="letter-peek" id="letter-peek-text">For Keonho</div>
+                    <div class="letter-peek" id="letter-peek-text">For Chiquita</div>
                     <div class="env-front"></div>
                     <div class="flap"></div>
                     <div class="heart-seal"><img src="./assets/images/pita.png" alt="Pita Seal" class="seal-img"></div>
@@ -89,25 +93,38 @@
                     </div>
                     <div class="tier tier-top">
                         <div class="icing">
-                            <div class="scallop"></div><div class="scallop"></div><div class="scallop"></div><div class="scallop"></div><div class="scallop"></div>
+                            <div class="scallop"></div>
+                            <div class="scallop"></div>
+                            <div class="scallop"></div>
+                            <div class="scallop"></div>
+                            <div class="scallop"></div>
                         </div>
-                        <div class="sprinkle s1"></div><div class="sprinkle s2"></div><div class="sprinkle s3"></div>
+                        <div class="sprinkle s1"></div>
+                        <div class="sprinkle s2"></div>
+                        <div class="sprinkle s3"></div>
                     </div>
                     <div class="tier tier-bottom">
                         <div class="icing">
-                            <div class="scallop"></div><div class="scallop"></div><div class="scallop"></div><div class="scallop"></div><div class="scallop"></div><div class="scallop"></div>
+                            <div class="scallop"></div>
+                            <div class="scallop"></div>
+                            <div class="scallop"></div>
+                            <div class="scallop"></div>
+                            <div class="scallop"></div>
+                            <div class="scallop"></div>
                         </div>
-                        <div class="sprinkle s4"></div><div class="sprinkle s5"></div><div class="sprinkle s6"></div>
+                        <div class="sprinkle s4"></div>
+                        <div class="sprinkle s5"></div>
+                        <div class="sprinkle s6"></div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="cake-action-container text-center mt-6">
                 <button class="btn-primary btn-blow-floating" id="btn-blow-candles">
                     Tiup Lilinnya
                 </button>
             </div>
-            
+
             <div id="countdown-container" class="countdown-wrapper mt-8">
                 <h3 class="countdown-title">Menuju hari spesial...</h3>
                 <div class="countdown-boxes">
@@ -119,22 +136,23 @@
             </div>
 
             <div id="blow-indicator" class="hidden mt-8 text-center">
-                <p class="instruction-text">🎉 Waktunya tiba! 🎉<br>Tiup lilinnya (gunakan mic) atau tap lilin untuk mematikan!</p>
+                <p class="instruction-text">🎉 Waktunya tiba! 🎉<br>Tiup lilinnya (gunakan mic) atau tap lilin untuk
+                    mematikan!</p>
                 <button class="btn-secondary mt-4" id="btn-enable-mic">Aktifkan Mic</button>
             </div>
         </section>
 
         <!-- Scene 3: Happy Birthday -->
         <section id="scene-birthday" class="scene">
-            <h1 class="birthday-title" id="hb-text">Happy Sweet Seventeen,<br>Keonho!</h1>
-            
+            <h1 class="birthday-title" id="hb-text">Happy Sweet Seventeen,<br>Chiquita!</h1>
+
             <!-- Scrapbook Photos Container with Frames -->
             <div class="birthday-scrapbook-container">
                 <!-- Left Side: photo5.jpeg with caption "how it's going" -->
                 <div class="scrapbook-photo photo-left" id="scrapbook-photo5" data-caption="how it's going">
                     <div class="tape tape-yellow"></div>
                     <div class="scrapbook-frame">
-                        <img src="./assets/images/photo5.jpeg" alt="Keonho Photo 5" class="scrapbook-img">
+                        <img src="./assets/images/photo5.jpeg" alt="Chiquita Photo 5" class="scrapbook-img">
                         <div class="scrapbook-caption">how it's going</div>
                     </div>
                 </div>
@@ -143,7 +161,7 @@
                 <div class="scrapbook-photo photo-right" id="scrapbook-photo1" data-caption="how it's start">
                     <div class="tape tape-pink"></div>
                     <div class="scrapbook-frame">
-                        <img src="./assets/images/photo1.jpeg" alt="Keonho Photo 1" class="scrapbook-img">
+                        <img src="./assets/images/photo1.jpeg" alt="Chiquita Photo 1" class="scrapbook-img">
                         <div class="scrapbook-caption">how it's start</div>
                     </div>
                 </div>
@@ -162,8 +180,12 @@
                 <div class="tonearm" id="tonearm"></div>
             </div>
             <div class="sound-wave" id="sound-wave">
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
             <div class="music-controls">
                 <button class="btn-icon" id="btn-toggle-play">Pause</button>
@@ -176,7 +198,7 @@
             <div class="letter-card">
                 <h2 class="letter-heading">A Letter for You</h2>
                 <div class="letter-content" id="letter-text">
-                    <p>hbd keonho, apapun yang terjadi tetaplah hidup</p>
+                    <p>hbd chiquita, apapun yang terjadi tetaplah hidup</p>
                 </div>
             </div>
             <button class="btn-primary mt-8" id="btn-next-letter">Buka Galeri</button>
@@ -185,12 +207,12 @@
         <!-- Scene 6: Gallery (Hanging String & Marquee Animation) -->
         <section id="scene-gallery" class="scene scrollable">
             <h2 class="section-title">Memories</h2>
-            
+
             <!-- Hanging Clothesline / String Gallery -->
             <div class="hanging-gallery-container">
                 <!-- Wavy String Background -->
                 <div class="hanging-string"></div>
-                
+
                 <!-- Infinite Marquee Wrapper (Right to Left) -->
                 <div class="gallery-marquee-wrapper">
                     <div class="gallery-marquee-track">
@@ -444,17 +466,19 @@
     </div>
 
     <!-- Floating Watermark Widget (Bottom Left) -->
-    <a href="https://www.winafaworks.my.id/" target="_blank" rel="noopener noreferrer" id="floating-watermark" class="floating-watermark">
+    <a href="https://www.winafaworks.my.id/" target="_blank" rel="noopener noreferrer" id="floating-watermark"
+        class="floating-watermark">
         <span>By Winafa Works</span>
     </a>
 
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    
+
     <!-- JavaScript Files -->
     <script src="./src/scripts/petals.js"></script>
     <script src="./src/scripts/countdown.js"></script>
     <script src="./src/scripts/interactions.js?v=3"></script>
     <script src="./src/scripts/main.js"></script>
 </body>
+
 </html>
