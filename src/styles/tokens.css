@@ -1,13 +1,7 @@
 /* Font Declarations */
 @font-face {
     font-family: 'Spheris';
-    src: url('../../assets/fonts/Spheris.ttf') format('truetype'),
-         url('../../assets/fonts/Spheris.otf') format('opentype'),
-         url('../../assets/fonts/spheris.ttf') format('truetype'),
-         url('../../assets/fonts/spheris.otf') format('opentype'),
-         url('../../assets/fonts/Spheris-Regular.ttf') format('truetype'),
-         url('../../assets/fonts/Spheris-Regular.otf') format('opentype'),
-         local('Spheris'), local('Spheris Regular'), local('Spheris-Regular');
+    src: local('Spheris'), local('Spheris Regular'), local('Spheris-Regular');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -71,11 +65,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     line-height: 1.6;
-    cursor: url('../../assets/images/cursor.svg.png') 16 16, url('../../assets/images/cursor.png') 16 16, url('../../assets/images/cursor.svg') 10 10, auto;
+    cursor: url('/assets/images/bucket_bunga_cursor_64.png') 32 32, url('../../assets/images/bucket_bunga_cursor_64.png') 32 32, auto;
 }
 
 button, a, .polaroid, .cake, .envelope-wrapper, .btn-primary, .btn-secondary, .btn-icon, .close-lightbox {
-    cursor: url('../../assets/images/cursor.svg.png') 16 16, url('../../assets/images/cursor-pointer.png') 16 16, url('../../assets/images/cursor-pointer.svg') 12 12, pointer !important;
+    cursor: url('/assets/images/bucket_bunga_cursor_64.png') 32 32, url('../../assets/images/bucket_bunga_cursor_64.png') 32 32, pointer !important;
 }
 
 #app {

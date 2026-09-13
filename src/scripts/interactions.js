@@ -61,7 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         isEnvelopeOpened = true;
-        btnOpenEnvelope.style.display = 'none';
+        btnOpenEnvelope.style.visibility = 'hidden';
+        btnOpenEnvelope.style.opacity = '0';
+        btnOpenEnvelope.style.pointerEvents = 'none';
         
         // Helper function for typing animation
         function startTypingEffect(element, textToType, speed = 90) {
@@ -79,6 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }, speed);
         }
 
+        const envelopeHeader = document.querySelector('.envelope-header');
+
         // GSAP Timeline for Envelope
         const tl = gsap.timeline({
             onComplete: () => {
@@ -86,7 +90,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => goToScene(1), 600);
             }
         });
-        
+
+        // 0. Header text smoothly moves up & fades out to clear space for opening flap & letter
+        if (envelopeHeader) {
+            tl.to(envelopeHeader, {
+                y: -60,
+                opacity: 0,
+                duration: 0.5,
+                ease: "power2.inOut"
+            }, 0);
+        }
+
         // 1. Envelope stands up
         tl.to(envelopeWrapper, {
             rotationX: 0,
@@ -423,7 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 5. Custom Bouquet Flower Cursor Setup ---
     function setupAutoCustomCursor() {
-        const cursorUrl = './assets/images/flower_cursor_64.png';
+        const cursorUrl = './assets/images/bucket_bunga_cursor_64.png';
         const style = document.createElement('style');
         style.innerHTML = `
             html, body {

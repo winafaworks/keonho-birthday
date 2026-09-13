@@ -45,12 +45,13 @@ function goToScene(index) {
                       { y: 0, autoAlpha: 1, duration: 0.8, stagger: 0.15, ease: "back.out(1.5)" }
                   );
               }
-              // Add letter pop up if entering letter
+              // Add letter pop up & typewriter animation if entering letter
               if (scenes[index] === 'scene-letter') {
                   gsap.fromTo('.letter-card',
                       { scale: 0.8, autoAlpha: 0, y: 30 },
                       { scale: 1, autoAlpha: 1, y: 0, duration: 0.8, ease: "back.out(1.2)" }
                   );
+                  startLetterTypewriter();
               }
           });
     }
@@ -62,6 +63,7 @@ function nextScene() {
 
 // Initial setup
 document.addEventListener('DOMContentLoaded', () => {
+    initLetterTypewriter();
     if (typeof gsap === 'undefined') return;
     
     // Hide all scenes except first using GSAP autoAlpha (handles opacity and visibility)
@@ -176,3 +178,77 @@ function triggerBirthdayAnimation() {
 document.getElementById('btn-next-birthday')?.addEventListener('click', nextScene);
 document.getElementById('btn-next-music')?.addEventListener('click', nextScene);
 document.getElementById('btn-next-letter')?.addEventListener('click', nextScene);
+
+// --- Letter Typewriter Animation ---
+let originalLetterData = [];
+let letterTypingInterval = null;
+let letterTypingTimeout = null;
+
+function initLetterTypewriter() {
+    const letterTextEl = document.getElementById('letter-text');
+    if (!letterTextEl) return;
+    const pElements = letterTextEl.querySelectorAll('p');
+    originalLetterData = Array.from(pElements).map(p => {
+        const italicEl = p.querySelector('i');
+        return {
+            text: p.textContent.trim(),
+            className: p.className,
+            isItalic: italicEl !== null
+        };
+    });
+}
+
+function startLetterTypewriter() {
+    const letterTextEl = document.getElementById('letter-text');
+    if (!letterTextEl || originalLetterData.length === 0) return;
+
+    if (letterTypingInterval) clearInterval(letterTypingInterval);
+    if (letterTypingTimeout) clearTimeout(letterTypingTimeout);
+
+    // Clear content and recreate paragraph nodes
+    letterTextEl.innerHTML = '';
+    originalLetterData.forEach(item => {
+        const p = document.createElement('p');
+        if (item.className) p.className = item.className;
+        letterTextEl.appendChild(p);
+    });
+
+    const pElements = letterTextEl.querySelectorAll('p');
+    let pIdx = 0;
+
+    function typeParagraph() {
+        if (pIdx >= originalLetterData.length) return;
+
+        const data = originalLetterData[pIdx];
+        const currentP = pElements[pIdx];
+        const chars = Array.from(data.text);
+        let charIdx = 0;
+
+        letterTypingInterval = setInterval(() => {
+            if (charIdx <= chars.length) {
+                const typedText = chars.slice(0, charIdx).join('');
+                const inner = data.isItalic ? `<i>${typedText}</i>` : typedText;
+                currentP.innerHTML = inner + '<span class="typing-cursor">|</span>';
+                charIdx++;
+            } else {
+                clearInterval(letterTypingInterval);
+                letterTypingInterval = null;
+
+                const finalText = data.isItalic ? `<i>${data.text}</i>` : data.text;
+
+                if (pIdx === originalLetterData.length - 1) {
+                    currentP.innerHTML = finalText + '<span class="typing-cursor">|</span>';
+                    letterTypingTimeout = setTimeout(() => {
+                        currentP.innerHTML = finalText;
+                    }, 1800);
+                } else {
+                    currentP.innerHTML = finalText;
+                    pIdx++;
+                    letterTypingTimeout = setTimeout(typeParagraph, 300);
+                }
+            }
+        }, 32);
+    }
+
+    typeParagraph();
+}

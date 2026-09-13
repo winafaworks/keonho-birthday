@@ -13,8 +13,19 @@
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    padding: var(--space-lg);
+    padding: 40px var(--space-lg);
     background: var(--color-bone-white);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scene > *:first-child {
+    margin-top: auto;
+}
+
+.scene > *:last-child {
+    margin-bottom: auto;
 }
 
 .scene.active {
@@ -25,8 +36,8 @@
 
 .scene.scrollable {
     justify-content: flex-start;
-    overflow-y: auto;
-    padding-top: var(--space-xxl);
+    padding-top: var(--space-xl);
+    padding-bottom: 120px;
 }
 
 /* Specific Backgrounds */
@@ -165,9 +176,10 @@
 
 /* Envelope Header Typography */
 .envelope-header {
-    margin-bottom: var(--space-xl);
+    margin-bottom: 40px;
     z-index: 5;
     position: relative;
+    text-align: center;
 }
 
 .envelope-badge {
@@ -1159,34 +1171,35 @@
     transform: scale(0.9);
 }
 
-/* Custom Bouquet Flower Cursor (Larger 64x64px) */
+/* Custom Bouquet Flower Cursor (Bucket Bunga 64x64px) */
 html, body {
-    cursor: url('../../assets/images/flower_cursor_64.png') 32 32, url('./assets/images/flower_cursor_64.png') 32 32, auto;
+    cursor: url('/assets/images/bucket_bunga_cursor_64.png') 32 32, url('../../assets/images/bucket_bunga_cursor_64.png') 32 32, auto;
 }
 
 button, a, .polaroid, .cake, .envelope-wrapper, .btn-primary, .btn-secondary, .btn-icon, .close-lightbox, .widget-play-btn, .floating-watermark {
-    cursor: url('../../assets/images/flower_cursor_64.png') 32 32, url('./assets/images/flower_cursor_64.png') 32 32, pointer !important;
+    cursor: url('/assets/images/bucket_bunga_cursor_64.png') 32 32, url('../../assets/images/bucket_bunga_cursor_64.png') 32 32, pointer !important;
 }
 
 /* Floating Watermark Widget (Bottom Left) */
 .floating-watermark {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    bottom: 14px;
+    left: 14px;
     z-index: 9999;
-    background: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(220, 200, 210, 0.3);
+    border: 1px solid rgba(220, 200, 210, 0.25);
     border-radius: 50px;
-    padding: 6px 16px;
+    padding: 3px 10px;
     font-family: var(--font-body);
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 500;
+    letter-spacing: 0.3px;
     color: #8c7380;
     text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    opacity: 0.45;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    opacity: 0.4;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
@@ -1261,5 +1274,33 @@ button, a, .polaroid, .cake, .envelope-wrapper, .btn-primary, .btn-secondary, .b
     border-radius: 12px;
     display: block;
     margin: 0 auto;
+}
+
+/* Mobile & Small Screen Responsive Enhancements */
+@media (max-width: 768px) {
+    .scene {
+        padding-top: 24px;
+        padding-bottom: 80px;
+    }
+
+    .letter-card {
+        padding: 20px 16px;
+        max-width: 100%;
+        box-shadow: 0 8px 24px rgba(194, 65, 112, 0.08);
+    }
+
+    .letter-heading {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .letter-content {
+        font-size: 14.5px;
+        line-height: 1.6;
+    }
+
+    .btn-primary, .btn-secondary {
+        margin-top: 20px;
+    }
 }
 
