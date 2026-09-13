@@ -352,6 +352,18 @@
     font-size: 24px;
 }
 
+.dday-greeting-text {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    color: var(--color-deep-rose);
+    text-align: center;
+    line-height: 1.45;
+    background: var(--color-ivory);
+    padding: 14px 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-soft-pink);
+}
+
 .countdown-boxes {
     display: flex;
     justify-content: space-between;
@@ -1279,8 +1291,21 @@ button, a, .polaroid, .cake, .envelope-wrapper, .btn-primary, .btn-secondary, .b
 /* Mobile & Small Screen Responsive Enhancements */
 @media (max-width: 768px) {
     .scene {
-        padding-top: 24px;
-        padding-bottom: 80px;
+        padding-top: 48px !important;
+        padding-bottom: 95px !important;
+    }
+
+    .cake-header {
+        margin-top: 8px;
+        margin-bottom: 10px;
+    }
+
+    .cake-container {
+        margin-top: 10px !important;
+    }
+
+    .countdown-wrapper {
+        margin-top: 16px !important;
     }
 
     .letter-card {

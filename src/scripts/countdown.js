@@ -1,17 +1,16 @@
 // src/scripts/countdown.js
 
-const targetMonth = 11; // 0-indexed, so 11 = December
+// Set to true for D-Day (Hari H / Ulang tahun sudah tiba atau sudah lewat)
+const isDDayMode = true;
+
+const targetMonth = 11; // 0-indexed, 11 = December
 const targetDate = 14;
 
 function getNextBirthdayDate() {
     const now = new Date();
-    // Use current year
     let year = now.getFullYear();
-    
     let birthday = new Date(year, targetMonth, targetDate, 0, 0, 0, 0);
     
-    // If we've already passed the birthday this year, use next year's
-    // (We also check if today is exactly the birthday)
     if (now > birthday && now.getDate() !== targetDate && now.getMonth() !== targetMonth) {
         birthday = new Date(year + 1, targetMonth, targetDate, 0, 0, 0, 0);
     }
@@ -19,34 +18,38 @@ function getNextBirthdayDate() {
 }
 
 function initCountdown() {
-    const cdDays = document.getElementById('cd-days');
-    const cdHours = document.getElementById('cd-hours');
-    const cdMinutes = document.getElementById('cd-minutes');
-    const cdSeconds = document.getElementById('cd-seconds');
     const blowIndicator = document.getElementById('blow-indicator');
     const countdownContainer = document.getElementById('countdown-container');
+
+    if (isDDayMode && countdownContainer) {
+        const cdContent = document.getElementById('countdown-content');
+
+        if (cdContent) {
+            cdContent.className = 'dday-greeting-text';
+            cdContent.innerHTML = 'Waktu yang ditunggu telah tiba!!';
+        }
+
+        if (blowIndicator) {
+            blowIndicator.classList.remove('hidden');
+        }
+        return;
+    }
 
     const updateCountdown = () => {
         const now = new Date();
         const target = getNextBirthdayDate();
         const diff = target - now;
 
-        // Is it the birthday right now? (same month and date)
-        if (now.getMonth() === targetMonth && now.getDate() === targetDate) {
-            // It's the birthday!
-            if (countdownContainer) countdownContainer.classList.add('hidden');
-            if (blowIndicator) blowIndicator.classList.remove('hidden');
-            return true; // Reached target
-        }
-
-        if (diff <= 0) {
-            // Reached target logic (safety fallback)
-            if (countdownContainer) countdownContainer.classList.add('hidden');
+        if ((now.getMonth() === targetMonth && now.getDate() === targetDate) || diff <= 0) {
+            const cdContent = document.getElementById('countdown-content');
+            if (cdContent) {
+                cdContent.className = 'dday-greeting-text';
+                cdContent.innerHTML = 'Waktu yang ditunggu telah tiba!!';
+            }
             if (blowIndicator) blowIndicator.classList.remove('hidden');
             return true;
         }
 
-        // Calculate time
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -57,14 +60,11 @@ function initCountdown() {
         if (cdMinutes) cdMinutes.innerText = minutes.toString().padStart(2, '0');
         if (cdSeconds) cdSeconds.innerText = seconds.toString().padStart(2, '0');
 
-        return false; // Not reached yet
+        return false;
     };
 
-    // Initial call
     const isBirthday = updateCountdown();
-
     if (!isBirthday) {
-        // Only set interval if it's not birthday yet
         setInterval(updateCountdown, 1000);
     }
 }
