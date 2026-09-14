@@ -400,7 +400,65 @@
     font-weight: 500;
 }
 
-/* CSS Cake Drawing (2-Tier Realistic) */
+/* Cake Cutting Animation & Elements */
+.cake-knife {
+    position: absolute;
+    top: -95px;
+    right: 15px;
+    width: 24px;
+    height: 120px;
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transform: rotate(28deg);
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.22));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.knife-blade {
+    width: 14px;
+    height: 75px;
+    background: linear-gradient(135deg, #e6e6e6 0%, #ffffff 50%, #b8b8b8 100%);
+    border-radius: 3px 22px 3px 3px;
+    border: 1px solid #c0c0c0;
+    box-shadow: inset 1px 1px 3px rgba(255,255,255,0.9);
+}
+
+.knife-handle {
+    width: 18px;
+    height: 45px;
+    background: linear-gradient(135deg, #f8a6c1 0%, #ef7da0 100%);
+    border-radius: 8px;
+    margin-top: -3px;
+    border: 1.5px solid #ffffff;
+    box-shadow: 0 4px 8px rgba(239, 125, 160, 0.45);
+    position: relative;
+}
+
+.knife-handle::after {
+    content: '🌸';
+    position: absolute;
+    bottom: 5px;
+    left: 2px;
+    font-size: 10px;
+}
+
+/* Centered Scene 2 Cake Content Wrapper */
+.scene-cake-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    z-index: 10;
+}
+
+/* CSS Cake Drawing (2-Tier Realistic with Splitting Body Halves) */
 .cake-container {
     margin-top: 30px;
     position: relative;
@@ -414,10 +472,156 @@
 .cake {
     position: relative;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+}
+
+.candles {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 16px;
+    z-index: 25;
+    width: auto;
+}
+
+.cake-whole {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.cake-body-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 125px;
+    z-index: 10;
+}
+
+.cake-half {
+    position: absolute;
+    top: 0;
+    width: 90px;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cake-half-left {
+    left: 0;
+    transform-origin: bottom left;
+}
+
+.cake-half-right {
+    right: 0;
+    transform-origin: bottom right;
+}
+
+.candles-half {
+    position: absolute;
+    top: 5px;
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    z-index: 25;
+}
+
+.candles-left {
+    left: 45px;
+}
+
+.candles-right {
+    left: 28px;
+}
+
+.slice-candle {
+    position: absolute;
+    top: -24px;
+    left: 10px;
+    transform: scale(0.65);
+    z-index: 10;
+}
+
+.tiers-inner {
+    position: absolute;
+    top: 0;
+    width: 180px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tiers-left {
+    left: 0;
+}
+
+.tiers-right {
+    right: -90px;
+}
+
+.cut-wall {
+    position: absolute;
+    top: 15px;
+    width: 14px;
+    height: 110px;
+    z-index: 15;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.25);
+    transition: opacity 0.35s ease;
+}
+
+.cut-wall-left {
+    right: 0;
+    border-right: 2px solid #e07090;
+    border-radius: 4px 0 0 4px;
+}
+
+.cut-wall-right {
+    left: 0;
+    border-left: 2px solid #e07090;
+    border-radius: 0 4px 4px 0;
+}
+
+.cut-wall.visible {
+    opacity: 1;
+}
+
+.cw-layer.sponge {
+    height: 28px;
+    background: linear-gradient(180deg, #FFF9C4 0%, #FFF59D 100%);
+}
+
+.cw-layer.jam {
+    height: 10px;
+    background: linear-gradient(180deg, #E91E63 0%, #C2185B 100%);
+}
+
+.cw-layer.cream {
+    height: 12px;
+    background: #FFFFFF;
 }
 
 .tier {
@@ -440,6 +644,142 @@
     border-radius: 12px 12px 0 0;
     margin-bottom: -5px;
     z-index: 2;
+}
+
+.gap-layer.sponge {
+    height: 25px;
+    background: linear-gradient(180deg, #FFF9C4 0%, #FFF59D 100%);
+    box-shadow: inset 0 -1px 2px rgba(0,0,0,0.06);
+}
+
+.gap-layer.jam {
+    height: 10px;
+    background: linear-gradient(180deg, #E91E63 0%, #C2185B 100%);
+}
+
+.gap-layer.cream {
+    height: 12px;
+    background: #FFFFFF;
+}
+
+/* Porcelain Dessert Plate & Cake Slice Assembly */
+.cake-slice-assembly {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    width: 75px;
+    height: 130px;
+    z-index: 15;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 0) rotate(0deg);
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.22));
+}
+
+.dessert-plate {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75px;
+    height: 22px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F5F5F5 100%);
+    border-radius: 50%;
+    border: 2px solid #EAEAEA;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12), inset 0 2px 4px rgba(255,255,255,0.9);
+}
+
+.cake-slice-piece {
+    position: relative;
+    width: 46px;
+    height: 110px;
+    margin: 0 auto;
+    transform: rotate(6deg);
+}
+
+.slice-side {
+    width: 100%;
+    height: 98px;
+    border-radius: 6px 6px 8px 8px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.85);
+    box-shadow: inset -3px 0 6px rgba(0,0,0,0.1);
+}
+
+.s-layer.sponge {
+    height: 22px;
+    background: linear-gradient(180deg, #FFF9C4 0%, #FFF59D 100%);
+}
+
+.s-layer.jam {
+    height: 9px;
+    background: linear-gradient(180deg, #E91E63 0%, #C2185B 100%);
+}
+
+.s-layer.cream {
+    height: 10px;
+    background: #FFFFFF;
+}
+
+.slice-top-icing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: #FFCCBC;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 2px solid #ffffff;
+    display: flex;
+    justify-content: space-around;
+}
+
+.slice-scallop {
+    width: 12px;
+    height: 10px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    margin-top: 6px;
+}
+
+.slice-cherry {
+    position: absolute;
+    top: -24px;
+    left: 12px;
+    font-size: 26px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+}
+
+.crumb {
+    position: absolute;
+    bottom: -2px;
+    width: 4px;
+    height: 4px;
+    background: #FFF59D;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.crumb-1 { left: 12px; }
+.crumb-2 { left: 35px; bottom: 0px; background: #F48FB1; }
+.crumb-3 { right: 14px; }
+
+.btn-cut-floating {
+    background: linear-gradient(135deg, #F8A6C1, var(--color-rose-pink)) !important;
+    animation: floatBlow 2.5s ease-in-out infinite;
+    position: relative;
+    z-index: 20;
+    letter-spacing: 0.5px;
+    font-size: 20px;
+    padding: 14px 30px;
+    box-shadow: var(--shadow-button) !important;
+}
+
+.btn-cut-floating:active {
+    transform: scale(0.96);
+    box-shadow: 0 4px 10px rgba(239, 125, 160, 0.35) !important;
 }
 
 .icing {
@@ -479,9 +819,11 @@
     position: relative;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    align-items: flex-end;
+    gap: 16px;
     margin-bottom: -10px;
     z-index: 3;
+    width: 100%;
 }
 
 .candle {

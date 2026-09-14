@@ -60,85 +60,226 @@
 
         <!-- Scene 2: Cake & Countdown -->
         <section id="scene-cake" class="scene">
-            <div class="cake-header text-center">
-                <span class="envelope-badge">Make a Wish 🌸</span>
-            </div>
+            <div class="scene-cake-content">
+                <div class="cake-header text-center">
+                    <span class="envelope-badge">Make a Wish 🌸</span>
+                </div>
 
-            <div class="cake-container">
-                <div class="cake">
-                    <div class="candles">
-                        <div class="candle candle-1">
-                            <div class="wick"></div>
-                            <div class="flame">
-                                <div class="flame-glow"></div>
-                                <div class="flame-outer"></div>
-                                <div class="flame-inner"></div>
-                                <div class="flame-base"></div>
-                            </div>
-                        </div>
-                        <div class="candle candle-2">
-                            <div class="wick"></div>
-                            <div class="flame">
-                                <div class="flame-glow"></div>
-                                <div class="flame-outer"></div>
-                                <div class="flame-inner"></div>
-                                <div class="flame-base"></div>
-                            </div>
-                        </div>
-                        <div class="candle candle-3">
-                            <div class="wick"></div>
-                            <div class="flame">
-                                <div class="flame-glow"></div>
-                                <div class="flame-outer"></div>
-                                <div class="flame-inner"></div>
-                                <div class="flame-base"></div>
-                            </div>
-                        </div>
+                <div class="cake-container">
+                    <div class="cake-knife" id="cake-knife">
+                        <div class="knife-blade"></div>
+                        <div class="knife-handle"></div>
                     </div>
-                    <div class="tier tier-top">
-                        <div class="icing">
-                            <div class="scallop"></div>
-                            <div class="scallop"></div>
-                            <div class="scallop"></div>
-                            <div class="scallop"></div>
-                            <div class="scallop"></div>
-                        </div>
-                        <div class="sprinkle s1"></div>
-                        <div class="sprinkle s2"></div>
-                        <div class="sprinkle s3"></div>
+                    <div class="cut-seam" id="cut-seam"></div>
+                    
+                    <!-- Inner Slice Notch / Cut Gap Overlaid on Cake Center -->
+                    <div class="cake-cut-gap" id="cake-cut-gap">
+                        <div class="gap-layer sponge"></div>
+                        <div class="gap-layer jam"></div>
+                        <div class="gap-layer sponge"></div>
+                        <div class="gap-layer cream"></div>
+                        <div class="gap-layer sponge"></div>
                     </div>
-                    <div class="tier tier-bottom">
-                        <div class="icing">
-                            <div class="scallop"></div>
-                            <div class="scallop"></div>
-                            <div class="scallop"></div>
-                            <div class="scallop"></div>
-                            <div class="scallop"></div>
-                            <div class="scallop"></div>
+
+                    <!-- Porcelain Dessert Plate & Cake Slice Assembly -->
+                    <div class="cake-slice-assembly" id="cake-slice-assembly">
+                        <div class="dessert-plate"></div>
+                        <div class="cake-slice-piece">
+                            <div class="slice-side">
+                                <div class="s-layer sponge"></div>
+                                <div class="s-layer jam"></div>
+                                <div class="s-layer sponge"></div>
+                                <div class="s-layer cream"></div>
+                                <div class="s-layer sponge"></div>
+                            </div>
+                            <div class="slice-top-icing">
+                                <div class="slice-scallop"></div>
+                                <div class="slice-scallop"></div>
+                                <div class="candle candle-2 slice-candle">
+                                    <div class="wick"></div>
+                                </div>
+                                <div class="slice-cherry">🍒</div>
+                            </div>
                         </div>
-                        <div class="sprinkle s4"></div>
-                        <div class="sprinkle s5"></div>
-                        <div class="sprinkle s6"></div>
+                        <div class="crumb crumb-1"></div>
+                        <div class="crumb crumb-2"></div>
+                        <div class="crumb crumb-3"></div>
+                    </div>
+
+                    <!-- Symmetrical Cake with Separated Body Halves for Split Effect -->
+                    <div class="cake" id="cake-main">
+                        <!-- Single Centered Candles Layer -->
+                        <div class="candles" id="cake-candles">
+                            <div class="candle candle-1">
+                                <div class="wick"></div>
+                                <div class="flame">
+                                    <div class="flame-glow"></div>
+                                    <div class="flame-outer"></div>
+                                    <div class="flame-inner"></div>
+                                    <div class="flame-base"></div>
+                                </div>
+                            </div>
+                            <div class="candle candle-2">
+                                <div class="wick"></div>
+                                <div class="flame">
+                                    <div class="flame-glow"></div>
+                                    <div class="flame-outer"></div>
+                                    <div class="flame-inner"></div>
+                                    <div class="flame-base"></div>
+                                </div>
+                            </div>
+                            <div class="candle candle-3">
+                                <div class="wick"></div>
+                                <div class="flame">
+                                    <div class="flame-glow"></div>
+                                    <div class="flame-outer"></div>
+                                    <div class="flame-inner"></div>
+                                    <div class="flame-base"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1. Whole Continuous Cake (Shown initially, 100% seamless, no cut lines) -->
+                        <div class="cake-whole" id="cake-whole">
+                            <div class="tier tier-top">
+                                <div class="icing">
+                                    <div class="scallop"></div>
+                                    <div class="scallop"></div>
+                                    <div class="scallop"></div>
+                                    <div class="scallop"></div>
+                                    <div class="scallop"></div>
+                                </div>
+                                <div class="sprinkle s1"></div>
+                                <div class="sprinkle s2"></div>
+                                <div class="sprinkle s3"></div>
+                            </div>
+                            <div class="tier tier-bottom">
+                                <div class="icing">
+                                    <div class="scallop"></div>
+                                    <div class="scallop"></div>
+                                    <div class="scallop"></div>
+                                    <div class="scallop"></div>
+                                    <div class="scallop"></div>
+                                    <div class="scallop"></div>
+                                    <div class="scallop"></div>
+                                </div>
+                                <div class="sprinkle s4"></div>
+                                <div class="sprinkle s5"></div>
+                                <div class="sprinkle s6"></div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Cake Body Container (Hidden initially, activates on cut) -->
+                        <div class="cake-body-container hidden" id="cake-body-container">
+                            <!-- Left Half of Cake Body -->
+                            <div class="cake-half cake-half-left" id="cake-half-left">
+                                <div class="candles-half candles-left">
+                                    <div class="candle candle-1">
+                                        <div class="wick"></div>
+                                        <div class="flame">
+                                            <div class="flame-glow"></div>
+                                            <div class="flame-outer"></div>
+                                            <div class="flame-inner"></div>
+                                            <div class="flame-base"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cut-wall cut-wall-left" id="cut-wall-left">
+                                    <div class="cw-layer sponge"></div>
+                                    <div class="cw-layer jam"></div>
+                                    <div class="cw-layer sponge"></div>
+                                    <div class="cw-layer cream"></div>
+                                    <div class="cw-layer sponge"></div>
+                                </div>
+                                <div class="tiers-inner tiers-left">
+                                    <div class="tier tier-top">
+                                        <div class="icing">
+                                            <div class="scallop"></div>
+                                            <div class="scallop"></div>
+                                            <div class="scallop"></div>
+                                        </div>
+                                        <div class="sprinkle s1"></div>
+                                        <div class="sprinkle s2"></div>
+                                    </div>
+                                    <div class="tier tier-bottom">
+                                        <div class="icing">
+                                            <div class="scallop"></div>
+                                            <div class="scallop"></div>
+                                            <div class="scallop"></div>
+                                            <div class="scallop"></div>
+                                        </div>
+                                        <div class="sprinkle s4"></div>
+                                        <div class="sprinkle s5"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Half of Cake Body -->
+                            <div class="cake-half cake-half-right" id="cake-half-right">
+                                <div class="candles-half candles-right">
+                                    <div class="candle candle-3">
+                                        <div class="wick"></div>
+                                        <div class="flame">
+                                            <div class="flame-glow"></div>
+                                            <div class="flame-outer"></div>
+                                            <div class="flame-inner"></div>
+                                            <div class="flame-base"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cut-wall cut-wall-right" id="cut-wall-right">
+                                    <div class="cw-layer sponge"></div>
+                                    <div class="cw-layer jam"></div>
+                                    <div class="cw-layer sponge"></div>
+                                    <div class="cw-layer cream"></div>
+                                    <div class="cw-layer sponge"></div>
+                                </div>
+                                <div class="tiers-inner tiers-right">
+                                    <div class="tier tier-top">
+                                        <div class="icing">
+                                            <div class="scallop"></div>
+                                            <div class="scallop"></div>
+                                            <div class="scallop"></div>
+                                        </div>
+                                        <div class="sprinkle s2"></div>
+                                        <div class="sprinkle s3"></div>
+                                    </div>
+                                    <div class="tier tier-bottom">
+                                        <div class="icing">
+                                            <div class="scallop"></div>
+                                            <div class="scallop"></div>
+                                            <div class="scallop"></div>
+                                            <div class="scallop"></div>
+                                        </div>
+                                        <div class="sprinkle s5"></div>
+                                        <div class="sprinkle s6"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="cake-action-container text-center mt-6">
-                <button class="btn-primary btn-blow-floating" id="btn-blow-candles">
-                    Tiup Lilinnya
-                </button>
-            </div>
-
-            <div id="countdown-container" class="countdown-wrapper mt-8">
-                <div id="countdown-content" class="dday-greeting-text">
-                    Waktu yang ditunggu telah tiba!!
+                <div class="cake-action-container text-center mt-6">
+                    <button class="btn-primary btn-blow-floating" id="btn-blow-candles">
+                        Tiup Lilinnya
+                    </button>
+                    <button class="btn-primary btn-cut-floating hidden" id="btn-cut-cake">
+                        Potong Kuenya
+                    </button>
                 </div>
-            </div>
 
-            <div id="blow-indicator" class="hidden mt-8 text-center">
-                <p class="instruction-text">Tiup lilinnya (gunakan mic) atau tap lilin untuk
-                    mematikan!</p>
-                <button class="btn-secondary mt-4" id="btn-enable-mic">Aktifkan Mic</button>
+                <div id="countdown-container" class="countdown-wrapper mt-8">
+                    <div id="countdown-content" class="dday-greeting-text">
+                        Waktu yang ditunggu telah tiba!!
+                    </div>
+                </div>
+
+                <div id="blow-indicator" class="hidden mt-8 text-center">
+                    <p class="instruction-text">Tiup lilinnya (gunakan mic) atau tap lilin untuk
+                        mematikan!</p>
+                    <button class="btn-secondary mt-4" id="btn-enable-mic">Aktifkan Mic</button>
+                </div>
             </div>
         </section>
 
@@ -465,7 +606,7 @@
         <div class="widget-disc" id="widget-disc">🎵</div>
         <div class="widget-info">
             <span class="widget-label">Now Playing</span>
-            <span class="widget-title" id="widget-song-title">Happy Birthday 🎂</span>
+            <span class="widget-title" id="widget-song-title">Happy Birthday</span>
         </div>
         <button class="widget-play-btn" id="btn-floating-toggle" aria-label="Play/Pause Music">
             <span id="floating-play-icon">⏸️</span>

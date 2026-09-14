@@ -162,6 +162,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const btnCutCake = document.getElementById('btn-cut-cake');
+    const cakeKnife = document.getElementById('cake-knife');
+    const cutSeam = document.getElementById('cut-seam');
+    const cakeSliceItem = document.getElementById('cake-slice-item');
+    const blowIndicator = document.getElementById('blow-indicator');
+
+    function revealCutCakeButton() {
+        // Hide blow button & mic indicator
+        if (btnBlowCandles) {
+            btnBlowCandles.style.display = 'none';
+        }
+        if (blowIndicator) {
+            blowIndicator.style.display = 'none';
+        }
+
+        // Hide countdown box ("Waktu yang ditunggu telah tiba!!") on potong kue page
+        const countdownContainer = document.getElementById('countdown-container');
+        if (countdownContainer) {
+            if (typeof gsap !== 'undefined') {
+                gsap.to(countdownContainer, {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.4,
+                    onComplete: () => {
+                        countdownContainer.style.display = 'none';
+                    }
+                });
+            } else {
+                countdownContainer.style.display = 'none';
+            }
+        }
+
+        // Show Potong Kue button
+        if (btnCutCake) {
+            btnCutCake.classList.remove('hidden');
+            if (typeof gsap !== 'undefined') {
+                gsap.fromTo(btnCutCake, 
+                    { scale: 0, opacity: 0 }, 
+                    { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" }
+                );
+            }
+        }
+    }
+
     function extinguishCandle() {
         const flames = document.querySelectorAll('.flame');
         if (flames.length === 0) return;
@@ -185,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         stagger: 0.08,
                         ease: "back.in(2)",
                         onComplete: () => {
-                            setTimeout(() => goToScene(2), 700);
+                            setTimeout(revealCutCakeButton, 300);
                         }
                     });
                 }
@@ -193,13 +237,105 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             createSmokeParticles();
             flames.forEach(f => f.classList.add('extinguished'));
-            setTimeout(() => goToScene(2), 1000);
+            setTimeout(revealCutCakeButton, 500);
         }
         
         if (audioContext && audioContext.state !== 'closed') {
             audioContext.close();
         }
     }
+
+    // Cut Cake Button Interaction (Splitting Cake Body Animation)
+    btnCutCake?.addEventListener('click', () => {
+        btnCutCake.disabled = true;
+
+        const cakeKnife = document.getElementById('cake-knife');
+        const cutSeam = document.getElementById('cut-seam');
+        const cakeWhole = document.getElementById('cake-whole');
+        const cakeCandles = document.getElementById('cake-candles');
+        const cakeBodyContainer = document.getElementById('cake-body-container');
+        const cakeHalfLeft = document.getElementById('cake-half-left');
+        const cakeHalfRight = document.getElementById('cake-half-right');
+        const cutWallLeft = document.getElementById('cut-wall-left');
+        const cutWallRight = document.getElementById('cut-wall-right');
+        const cakeSliceAssembly = document.getElementById('cake-slice-assembly');
+
+        if (typeof gsap !== 'undefined') {
+            const tlCut = gsap.timeline({
+                onComplete: () => {
+                    // Confetti burst on cake cut!
+                    if (typeof confetti === 'function') {
+                        confetti({
+                            particleCount: 80,
+                            spread: 90,
+                            origin: { y: 0.6 },
+                            colors: ['#f8a6c1', '#ffd54f', '#64b5f6', '#ffffff', '#ff80ab']
+                        });
+                    }
+                    // Advance to Scene 3 (Happy Birthday)
+                    setTimeout(() => goToScene(2), 1500);
+                }
+            });
+
+            // 1. Knife lowers and slices straight down through the center of cake body
+            tlCut.fromTo(cakeKnife, 
+                { opacity: 0, y: -45, rotation: 25 },
+                { opacity: 1, y: 35, rotation: 0, duration: 0.5, ease: "power2.in" }
+            )
+            // 2. Cut seam appears down through center
+            .to(cutSeam, {
+                height: 110,
+                duration: 0.35,
+                ease: "power1.inOut"
+            }, "-=0.2")
+            // 3. Switch from seamless whole cake & top candles to splitting body halves with attached candles
+            .add(() => {
+                if (cakeWhole) cakeWhole.classList.add('hidden');
+                if (cakeCandles) cakeCandles.classList.add('hidden');
+                if (cakeBodyContainer) cakeBodyContainer.classList.remove('hidden');
+                if (cutWallLeft) cutWallLeft.classList.add('visible');
+                if (cutWallRight) cutWallRight.classList.add('visible');
+            })
+            // 4. Cake body halves AND attached candles physically split open left and right!
+            .fromTo(cakeHalfLeft, 
+                { x: 0, rotation: 0 },
+                { x: -10, rotation: -1.5, duration: 0.7, ease: "back.out(1.4)" }
+            )
+            .fromTo(cakeHalfRight, 
+                { x: 0, rotation: 0 },
+                { x: 10, rotation: 1.5, duration: 0.7, ease: "back.out(1.4)" },
+                "-=0.7"
+            )
+            // 5. Knife lifts away smoothly
+            .to(cakeKnife, {
+                y: -35,
+                opacity: 0,
+                rotation: -15,
+                duration: 0.4,
+                ease: "power2.out"
+            }, "-=0.4")
+            // 6. Lifted cake slice assembly (porcelain plate + slice + cherry + crumbs) glides out to the right!
+            .fromTo(cakeSliceAssembly,
+                { opacity: 0, x: "-50%", y: 0, rotation: 0 },
+                { opacity: 1, x: "75px", y: -15, rotation: 10, duration: 0.8, ease: "back.out(1.4)" },
+                "-=0.5"
+            );
+        } else {
+            if (cakeWhole) cakeWhole.classList.add('hidden');
+            if (cakeCandles) cakeCandles.classList.add('hidden');
+            if (cakeBodyContainer) cakeBodyContainer.classList.remove('hidden');
+            if (cutSeam) cutSeam.style.height = '110px';
+            if (cutWallLeft) cutWallLeft.classList.add('visible');
+            if (cutWallRight) cutWallRight.classList.add('visible');
+            if (cakeHalfLeft) cakeHalfLeft.style.transform = 'translateX(-10px) rotate(-1.5deg)';
+            if (cakeHalfRight) cakeHalfRight.style.transform = 'translateX(10px) rotate(1.5deg)';
+            if (cakeSliceAssembly) {
+                cakeSliceAssembly.style.opacity = '1';
+                cakeSliceAssembly.style.transform = 'translate(75px, -15px) rotate(10deg)';
+            }
+            setTimeout(() => goToScene(2), 1500);
+        }
+    });
 
     // Floating blow button click
     btnBlowCandles?.addEventListener('click', () => {
@@ -330,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
             floatingWidget.classList.remove('hidden');
         }
         if (widgetSongTitle) {
-            widgetSongTitle.innerText = 'Happy Birthday 🎂';
+            widgetSongTitle.innerText = 'Happy Birthday';
         }
 
         if (bgMusic) {
@@ -357,7 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
             floatingWidget.classList.remove('hidden');
         }
         if (widgetSongTitle) {
-            widgetSongTitle.innerText = 'HIVI! - Remaja 🎵';
+            widgetSongTitle.innerText = 'HIVI! - Remaja';
         }
 
         // Play HIVI! - Remaja
@@ -453,3 +589,4 @@ document.addEventListener('DOMContentLoaded', () => {
     setupAutoCustomCursor();
 
 });
+
