@@ -2,7 +2,7 @@
 
 // Set to false for pre-D-Day mode (Hitung mundur menuju ulang tahun)
 // Set to true for D-Day mode (Hari H / Ulang tahun sudah tiba)
-const isDDayMode = false;
+const isDDayMode = true;
 
 const targetMonth = 11; // 0-indexed, 11 = December
 const targetDate = 14;
