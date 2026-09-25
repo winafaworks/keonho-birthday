@@ -43,7 +43,7 @@ function initCountdown() {
     if (cdContent) {
         cdContent.className = 'countdown-boxes-wrapper';
         cdContent.innerHTML = `
-            <h3 class="countdown-title">Hitung Mundur Ulang Tahun 💖</h3>
+            <h3 class="countdown-title">Hitung Mundur Ulang Tahun</h3>
             <div class="countdown-boxes">
                 <div class="cd-box"><span id="cd-days">00</span><small>Hari</small></div>
                 <div class="cd-box"><span id="cd-hours">00</span><small>Jam</small></div>

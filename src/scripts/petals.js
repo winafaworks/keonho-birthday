@@ -3,7 +3,7 @@
 (function() {
     window.triggerBalloonAndLoveBurst = function(originX, originY) {
         const container = document.body;
-        const items = ['🎈', '💖', '💕', '❤️', '✨', '🎈', '💖', '💕', '🎈', '💖'];
+        const items = ['🎈', '🌸', '✨', '🎈', '🌸', '✨', '🎈', '🌸'];
         const totalCount = 24;
 
         const startX = originX || window.innerWidth / 2;
